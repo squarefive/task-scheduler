@@ -1,12 +1,7 @@
 package com.ice.task.scheduler.core.event;
 
-import com.cootf.resim.edw.bos.dw.core.ScheduleTask;
-import com.cootf.resim.edw.bos.dw.core.TaskExecuteCondition;
-import com.cootf.resim.edw.bos.ods.service.SysConfigService;
-import com.cootf.resim.edw.bos.service.entities.SysConfig;
 import com.google.common.eventbus.Subscribe;
-import com.ice.misc.DateUtils;
-import java.util.Date;
+import com.ice.task.scheduler.core.TaskExecuteCondition;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +33,6 @@ public class EventNotifyExecuteTaskListener {
         scheduleTask.executeTask(nextPriority, msg.getQueueName(), msg.getDate());//执行下一个队列
       } else {//执行完成，充值任务标识
         scheduleTask.finishTask();
-        this.updateSysConfig(DateUtils.yyyymmdd(msg.getDate()));
         logger.info("CoreTask end!");
       }
     }

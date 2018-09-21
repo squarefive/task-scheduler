@@ -1,11 +1,11 @@
 package com.ice.task.scheduler.ascpet;
 
-import com.cootf.resim.edw.bos.dw.core.EmailMsgCache;
-import com.cootf.resim.edw.bos.dw.core.event.EventBusMsg;
-import com.cootf.resim.edw.bos.dw.core.event.EventBusMsg.EventType;
-import com.cootf.resim.edw.bos.service.entities.EmailMsg;
 import com.google.common.eventbus.EventBus;
 import com.ice.misc.Misc;
+import com.ice.task.scheduler.bean.EmailMsg;
+import com.ice.task.scheduler.core.email.EmailMsgCache;
+import com.ice.task.scheduler.core.event.EventBusMsg;
+import com.ice.task.scheduler.core.event.EventBusMsg.EventType;
 import java.util.Date;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
