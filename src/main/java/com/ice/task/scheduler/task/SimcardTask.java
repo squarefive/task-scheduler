@@ -16,11 +16,10 @@ import org.springframework.stereotype.Component;
  * @Date: 2018/6/11 19:59
  */
 @Component
-@TaskAnnotation(priority = 5, taskName = "UserGoodsTask", queueName = TaskQueueEnum.USERINFO)
-public class UserGoodsTask extends BaseTask {
+@TaskAnnotation(priority = 2, taskName = "SimcardTask", queueName = TaskQueueEnum.SIMCARD)
+public class SimcardTask extends BaseTask {
 
-  private static final Logger logger = LoggerFactory.getLogger(UserGoodsTask.class);
-
+  private static final Logger logger = LoggerFactory.getLogger(SimcardTask.class);
 
   @Autowired
   private EventBus eventBus;
@@ -28,7 +27,7 @@ public class UserGoodsTask extends BaseTask {
   @Override
   public void doTask(Date date) throws Exception {
     logger.info("task {} is priority {} executing!", this.taskName, this.priority);
-    logger.info("UserGoodsTask executing!!!!!!!!!!!!!!!!!!!!");
+    logger.info("SimcardTask executing!!!!!!!!!!!!!!!!!!!!");
     Misc.sleep(1000/* 1秒. */);
     this.finish = true;
     this.notifyExecuteTaskMsg(eventBus, date);

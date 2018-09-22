@@ -24,24 +24,7 @@ public class ScheduleTask {
   private static final Logger logger = LoggerFactory.getLogger(ScheduleTask.class);
 
 
-  /**
-   * 1.创建一个Map<queueName,ConcurrentHashMap>.
-   *
-   * 2.在任务执行开始之前，对任务进行初始化工作(修改所有任务状态为未完成).
-   *
-   * 3.开始执行每个队列的任务(队列也有先后顺序，即sim卡队列，用户套餐队列在前，其他统计队列在后).
-   *
-   * 4.在执行任务之前，进行判断父节点的状态，如果父节点状态为成功，则执行该任务，否则跳出，然后发送一个消息到观察者中.
-   *
-   * 5.观察者将启动线程进行监听，不断读取某个节点的任务节点，并且该节点标识为重新启动，然后执行该节点，如果该标志已经解决，则进行后续操作.
-   *
-   * 6.每个任务执行完成之后，将更新状态.
-   *
-   * 7.bean初始化完成之后，对所有注解的任务进行统一进行初始化添加，不在任务中统一进行添加.
-   */
   public ConcurrentHashMap<Integer/* 优先级. */, List<BaseTask>/* 任务集合. */> tasks = new ConcurrentHashMap<>();
-
-  public volatile int curPriority; //当前优先级
 
   @Autowired
   private ThreadPoolTaskExecutor executor;
@@ -88,7 +71,6 @@ public class ScheduleTask {
   }
 
   public void run1(Date date) {
-    logger.info("task:{}", Misc.obj2json(tasks));
     Enumeration<Integer> keys = tasks.keys();
     List<Integer> prioritys = new ArrayList<>();
     while (keys.hasMoreElements()) {
@@ -99,6 +81,11 @@ public class ScheduleTask {
     executeTask(priority, date);//执行第一行的任务.
   }
 
+  /**
+   * 获取下个队列的优先级
+   * @param priority
+   * @return
+   */
   public Integer nextPriority(Integer priority) {
     Enumeration<Integer> keys = tasks.keys();
     List<Integer> prioritys = new ArrayList<>();

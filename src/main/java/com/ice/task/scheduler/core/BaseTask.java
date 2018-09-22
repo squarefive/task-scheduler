@@ -38,8 +38,4 @@ public abstract class BaseTask {
     eventBus.post(msg);
   }
 
-  public void notify(EventBus eventBus) {
-
-  }
-
 }

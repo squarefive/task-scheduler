@@ -35,10 +35,6 @@ public class TaskExecuteCondition {
       if (list.isEmpty()) {
         continue;
       }
-      if (list.get(0).allExecute) {
-        addCondition(list.get(0).priority, list.get(0).queueName, list.size());
-        continue;
-      }
       Map<String, List<BaseTask>> collect = list.stream()
           .collect(Collectors.groupingBy(x -> x.queueName, Collectors.toList()));
       for (Entry<String, List<BaseTask>> entry : collect.entrySet()) {

@@ -1,7 +1,6 @@
 package com.ice.task.scheduler.core;
 
 import com.ice.task.scheduler.annotation.TaskAnnotation;
-import com.ice.task.scheduler.core.event.ScheduleTask;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import org.apache.commons.lang3.ArrayUtils;
@@ -77,12 +76,12 @@ public class TaskBeanPostProcessor implements BeanPostProcessor, ApplicationCont
                 }
               }
             }
-            BaseTask baseTask = (BaseTask) bean;//强转
-            baseTask.priority = taskAnnotation.priority();
-            baseTask.taskName = taskAnnotation.taskName();
-            baseTask.queueName = taskAnnotation.queueName()[0].getQueueName();
-            //添加任务到任务队列中
-            scheduleTask.addTask(baseTask);
+//            BaseTask baseTask = (BaseTask) bean;//强转
+//            baseTask.priority = taskAnnotation.priority();
+//            baseTask.taskName = taskAnnotation.taskName();
+//            baseTask.queueName = taskAnnotation.queueName()[0].getQueueName();
+//            //添加任务到任务队列中
+            scheduleTask.addTask((BaseTask) target);
             logger.debug("task bean initialization success! task{} added queue", beanName);
             return bean;
           } catch (Exception e) {//强转类型出现异常时

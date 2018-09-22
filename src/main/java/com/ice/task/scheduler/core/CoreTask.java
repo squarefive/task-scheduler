@@ -16,7 +16,6 @@ import org.springframework.stereotype.Component;
  * @Date: 2018/6/8 10:19
  */
 @Component
-@PropertySource(value = "classpath:/application.properties")
 public class CoreTask {
 
   private static final Logger log = LoggerFactory.getLogger(CoreTask.class);
@@ -28,18 +27,15 @@ public class CoreTask {
 
   @Async
   //每天凌晨一点开始执行任务
-//  @Scheduled(cron = "0 0 1 * * ?")
   @Scheduled(cron = "0 */1 * * * ?")
   public void sheduled() {
     log.info("CoreTask start!");
     Date date1 = new Date();
-    Date date = DateUtils.dateRollOfDay(date1, 1, false);
-    int statDay = DateUtils.yyyymmdd(date);
-
     if (first.get()) {
       scheduleJob.init();//初始化项目
     }
     first.set(false);
+    log.info("core 输出");
     scheduleJob.run(date1);//项目运行
   }
 

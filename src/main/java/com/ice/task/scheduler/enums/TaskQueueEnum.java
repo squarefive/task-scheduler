@@ -1,6 +1,8 @@
 package com.ice.task.scheduler.enums;
 
 /**
+ * 管道标识
+ *
  * @author ice
  * @Date 2018/9/18 12:12
  */

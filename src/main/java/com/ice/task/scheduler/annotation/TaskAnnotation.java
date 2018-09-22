@@ -31,7 +31,9 @@ public @interface TaskAnnotation {
    */
   TaskQueueEnum[] queueName() default {};
 
-
+  /**
+   * 上一列所有任务都在执行完才能执行当前任务.
+   */
   boolean allExecute() default false;
 
 }

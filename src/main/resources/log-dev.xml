@@ -3,7 +3,7 @@
 
   <properties>
     <!-- 日志路径 -->
-    <property name="LOG_HOME">${sys:app.log.home}</property>
+    <property name="LOG_HOME">E:\opt\logs</property>
   </properties>
 
   <appenders>
