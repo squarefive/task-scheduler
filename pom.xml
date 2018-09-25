@@ -96,16 +96,10 @@
   <build>
     <plugins>
       <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.3</version>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
         <configuration>
-          <source>1.8</source>
-          <target>1.8</target>
-          <encoding>UTF-8</encoding>
-          <compilerArguments><!--将lib先的包打入-->
-            <extdirs>${basedir}/src/main/resources/lib/misc-1.0-SNAPSHOT.jar</extdirs>
-          </compilerArguments>
+          <fork>true</fork>
         </configuration>
       </plugin>
     </plugins>
